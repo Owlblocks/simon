@@ -40,6 +40,10 @@ footer a {
     float: right;
 }
 
+#count {
+    color: rgb(246, 239, 158);
+}
+
 .players {
     flex: 1;
     width: 100%;
