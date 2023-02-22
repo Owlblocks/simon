@@ -36,19 +36,25 @@
             </nav>
         </header>
         <main class="container-fluid bg-secondary text-center">
-            <h1>Welcome</h1>
-            <p>Login to play</p>
-            <form method="get" action="play.html">
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Your name here" />
-                <button type="submit">Login</button>
-            </form>
+            <div>
+                <h1>Welcome</h1>
+                <p>Login to play</p>
+                <form method="get" action="play.html">
+                    <input type="text" id="name" placeholder="Your name here" />
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
         </main>
-        <footer>
-            <hr />
-            <span class="text-reset">Author Name(s)</span>
-            <br />
-            <a href="https://github.com/Owlblocks/simon">GitHub</a>
+        <footer class="bg-dark text-dark text-muted">
+            <div class="container-fluid">
+                <span class="text-reset">Author Name(s)</span>
+                <a
+                    class="text-reset"
+                    href="https://github.com/Owlblocks/simon"
+                >
+                    Source
+                </a>
+            </div>
         </footer>
     </body>
 </html>
