@@ -14,8 +14,9 @@ class Button {
     }
 
     paint(level) {
-        const bg = `hsl(${this.hue}), 100%, ${level}%`;
+        const bg = `hsl(${this.hue}, 100%, ${level}%`;
         this.el.style.backgroundColor = bg;
+        console.log(this.el.style.backgroundColor);
     }
 
     async press(volume) {
@@ -62,6 +63,8 @@ class Game {
         if(this.allowPlayer) {
             this.allowPlayer = false;
             await this.buttons.get(button.id).press(1.0);
+
+            
         }
     }
 
@@ -81,15 +84,21 @@ class Game {
     }
 
     async playSequence() {
-
+        await delay(500);
+        for(const btn of this.sequence) {
+            await btn.press(1.0);
+            await delay(100);
+        }
     }
 
     addButton() {
-
+        const btn = this.getRandomButton();
+        this.sequence.push(btn);
     }
 
     updateScore(score) {
-
+        const scoreEl = document.querySelector('#score');
+        scoreEl.textContent = score;
     }
 
     async buttonDance(laps = 1) {
@@ -101,7 +110,8 @@ class Game {
     }
 
     getRandomButton() {
-
+        let buttons = Array.from(this.buttons.values());
+        return buttons[Math.floor(Math.random() * this.buttons.size)];
     }
 
     saveScore(score) {
