@@ -58,15 +58,26 @@ class Game {
     }
 
     async pressButton(button) {
-        console.log(button.id);
+        // console.log(button.id);
+        if(this.allowPlayer) {
+            this.allowPlayer = false;
+            await this.buttons.get(button.id).press(1.0);
+        }
     }
 
     async reset() {
-
+        this.allowPlayer = false;
+        this.playerPlaybackPos = 0;
+        this.sequence = [];
+        this.updateScore('--');
+        await this.buttonDance(1);
+        this.addButton();
+        await this.playSequence();
+        this.allowPlayer = true;
     }
 
     getPlayerName() {
-
+        return localStorage.getItem('userName') ?? 'Mystery Player';
     }
 
     async playSequence() {
@@ -82,7 +93,11 @@ class Game {
     }
 
     async buttonDance(laps = 1) {
-
+        for(let step = 0; step < laps; step++) {
+            for(const btn of this.buttons.values()) {
+                await btn.press(0.0);
+            }
+        }
     }
 
     getRandomButton() {
